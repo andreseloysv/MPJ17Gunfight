@@ -1,2 +1,2 @@
-# monthlyPracticeGMA
+# MPJ17
 MPJ17
