@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Personaje.unity
+- path: Assets/Scene/Personaje.unity
   isLoaded: 1
   isActive: 1
