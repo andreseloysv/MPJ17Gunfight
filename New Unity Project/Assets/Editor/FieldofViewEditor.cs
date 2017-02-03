@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof (Fieldofview))]
-public class FieldofViewEditor : Editor {
+[CustomEditor(typeof(Fieldofview))]
+public class FieldofViewEditor : Editor
+{
 
-    void OnSceneGUI() {
-         //deja que veas el trazado del field of view
+    void OnSceneGUI()
+    {
+        //deja que veas el trazado del field of view
         Fieldofview fow = (Fieldofview)target;
-        
+
         Handles.color = Color.white;
         Handles.DrawWireArc(fow.transform.position, Vector3.up, Vector3.forward, 360, fow.viewRadious);
 
@@ -20,5 +22,13 @@ public class FieldofViewEditor : Editor {
 
         Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleA * fow.viewRadious);
         Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleB * fow.viewRadious);
+
+        Handles.color = Color.red;
+
+        foreach (Transform visibleTarget in fow.visibleTargets)
+        {
+
+            Handles.DrawLine(fow.transform.position, visibleTarget.position);
+        }
     }
 }
