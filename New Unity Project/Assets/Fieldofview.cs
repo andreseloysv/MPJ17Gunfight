@@ -53,15 +53,15 @@ public class Fieldofview : MonoBehaviour
             Vector3 dirToTarget = (target.position - transform.position).normalized;
 
 
-            Debug.LogWarning("entra 0");
+            //Debug.LogWarning("entra 0");
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
-                Debug.LogWarning("entra 1");
+                //Debug.LogWarning("entra 1");
                 float disToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
                 {
-                    Debug.LogWarning("entra 2");
+                    //Debug.LogWarning("entra 2");
                     visibleTargets.Add(target);
 
                 }
