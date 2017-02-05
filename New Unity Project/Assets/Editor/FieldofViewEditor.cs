@@ -24,11 +24,15 @@ public class FieldofViewEditor : Editor
         Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleB * fow.viewRadious);
 
         Handles.color = Color.red;
+        //Debug.Log("crea el handle");
+        //Debug.LogWarning("Crea el handle");
 
         foreach (Transform visibleTarget in fow.visibleTargets)
         {
 
             Handles.DrawLine(fow.transform.position, visibleTarget.position);
+            //Debug.Log("crea el dentro ");
+            Debug.LogWarning("Crea el handle dentro");
         }
     }
 }
