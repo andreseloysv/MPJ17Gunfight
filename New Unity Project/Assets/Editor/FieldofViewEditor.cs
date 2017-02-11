@@ -32,7 +32,7 @@ public class FieldofViewEditor : Editor
 
             Handles.DrawLine(fow.transform.position, visibleTarget.position);
             //Debug.Log("crea el dentro ");
-            Debug.LogWarning("Crea el handle dentro");
+            //Debug.LogWarning("Crea el handle dentro");
         }
     }
 }
