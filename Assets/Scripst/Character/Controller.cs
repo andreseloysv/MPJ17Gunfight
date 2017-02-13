@@ -14,13 +14,17 @@ public class Controller : MonoBehaviour {
     Camera viewCamera;
     
     Vector3 velocity;
+
+    AudioSource walkSound;
+
+    float currentAxisHorizontal = 0;
+    float currentAxisVertical = 0;
     
-
-
     void Start () {
 
         rigidbody = GetComponent<Rigidbody>();
         viewCamera = Camera.main;
+        walkSound = GetComponent<AudioSource>();
 
     }
 	
@@ -30,9 +34,7 @@ public class Controller : MonoBehaviour {
         
         transform.LookAt(mousePos + Vector3.up * transform.position.y);
         
-
-        velocity = new Vector3 (Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * moveSpeed;
-       
+        velocity = this.getVector3DirectionWalk().normalized * moveSpeed;
 
     }
 
@@ -41,5 +43,31 @@ public class Controller : MonoBehaviour {
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
         
 
+    }
+    void walkEvents() {        
+        if(this.isWalking()) {
+            if (!walkSound.isPlaying) {
+                walkSound.Play();
+            }
+        }
+        else{
+            if (walkSound.isPlaying) {
+                walkSound.Stop();
+            }
+        }
+        
+    }
+    bool isWalking(){
+        if ((currentAxisHorizontal == 0)&&(currentAxisVertical == 0)){
+            return false;
+        }
+        return true;
+    }
+    Vector3 getVector3DirectionWalk(){
+        currentAxisHorizontal = Input.GetAxisRaw("Horizontal");
+        currentAxisVertical = Input.GetAxisRaw("Vertical");
+        this.walkEvents();
+
+        return new Vector3(currentAxisHorizontal,0,currentAxisVertical);
     }
 }
